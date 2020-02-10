@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -74,6 +75,7 @@ public class HexGrid : MonoBehaviour
         cell.transform.localPosition = position;
         cell.coords = HexCoordinates.FromOffsetCoordinates(x, z);
         cell.color = defaultColor;
+        
 
         if (x > 0)
         {
@@ -104,6 +106,7 @@ public class HexGrid : MonoBehaviour
         label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
         label.text = x + "\n" + z;
         label.text = cell.coords.ToStringOnSeparateLines();
+        cell.uiLabelTransform = label.rectTransform;
     }
 }
 

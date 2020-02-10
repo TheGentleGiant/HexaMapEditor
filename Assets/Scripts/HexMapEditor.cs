@@ -9,7 +9,7 @@ public class HexMapEditor : MonoBehaviour
     public Color[] colors;
     public HexGrid hexGrid;
     private Color activeColor;
-    private int activeElevation = 0;
+    private int activeElevation;
     private void Awake()
     {
         SelectColor(0);
