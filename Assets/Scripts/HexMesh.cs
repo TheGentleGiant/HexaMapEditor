@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityScript.Core;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
@@ -97,13 +98,18 @@ public class HexMesh : MonoBehaviour
         Vector3 bridge = HexMetrics.GetBridge(direction);
         Vector3 vertex3 = vertex1 + bridge;
         Vector3 vertex4 = vertex2 + bridge;
+        /*CREATING A SLOPE*/
+        vertex3.y = vertex4.y = currentNeighbor.Elevation * HexMetrics.elevationStep;
         AddQuad(vertex1, vertex2, vertex3, vertex4);
         AddQuadColor(cell.color, currentNeighbor.color);
         
         HexCell nextNeighbor = cell.GetNeighbor(direction.Next());
         if (direction <= HexDirection.E && nextNeighbor)
         {
-            AddTriangle(vertex2, vertex4, vertex2+ HexMetrics.GetBridge(direction.Next()));
+            /*SLOPE CONNECTIONS*/
+            Vector3 vertex5 = vertex2 + HexMetrics.GetBridge(direction.Next());
+            vertex5.y = nextNeighbor.Elevation * HexMetrics.elevationStep;
+            AddTriangle(vertex2, vertex4, vertex5);
             AddTriangleColor(cell.color, currentNeighbor.color, nextNeighbor.color);
         }
 
