@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum HexEdgeType
+{
+    Flat, Slope, Cliff
+}
 public class HexMetrics
 {
     /*HEX BASE CONSTRUCTION*/
     public const float outerRadius = 10f;
     public const float innerRadius = outerRadius * 0.866025404f;
 
+    
     private static Vector3[] corners =
     {
         new Vector3(0f, 0f, outerRadius),
@@ -36,5 +41,44 @@ public class HexMetrics
     
     /*ELEVATION*/
     public const float elevationStep = 5f;
+    /*TERRACING */
+    public const int terracesPerSlope = 2;
+    public const int terracesSteps = terracesPerSlope * 2 + 1;
+    public const float horizontalTerraceStepSize = 1f / terracesSteps;
+    public const float verticalTerraceStepSize = 1f / (terracesPerSlope + 1);
+    
+    public static Vector3 TerraceLerp(Vector3 a, Vector3 b, int step)
+    {
+        float h = step * HexMetrics.horizontalTerraceStepSize;
+        a.x += (b.x - a.x) * h;
+        a.z += (b.z - a.z) * h;
+        float v = ((step + 1) / 2) * HexMetrics.verticalTerraceStepSize;
+        a.y += (b.y - a.y) * v;
+        return a;
+    }
+
+    public static Color TerraceLerp(Color a, Color b, int step)
+    {
+        float h = step * HexMetrics.horizontalTerraceStepSize;
+        return Color.Lerp(a, b, h);
+    }
+    
+    public static HexEdgeType GetEdgeType(int firstElevation, int secondElevation)
+    {
+        if (firstElevation == secondElevation)
+        {
+            return HexEdgeType.Flat;
+        }
+        
+        int delta = secondElevation - firstElevation;
+        if (delta == 1 || delta == -1)
+        {
+            return HexEdgeType.Slope;
+        }
+
+        return HexEdgeType.Cliff;
+    }
+    
+    
 }
 

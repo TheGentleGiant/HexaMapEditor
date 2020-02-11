@@ -442,8 +442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414a0fc06528949a0baff4f719b04a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 6
-  height: 6
+  width: 20
+  height: 20
   cellPrefab: {fileID: 753611280573095451, guid: 2d4904d2dfd87b84fa1319f968cc6c16,
     type: 3}
   cellTextPrefab: {fileID: 5153464770710437055, guid: 3e7ef880374757043b9991755a0e0bdd,

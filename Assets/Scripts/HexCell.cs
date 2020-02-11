@@ -44,4 +44,8 @@ public class HexCell : MonoBehaviour
         cell.neighbors[(int) direction.Opposite()] = this;
     }
 
+    public HexEdgeType GetEdgeType(HexDirection direction) => HexMetrics.GetEdgeType(elevation, neighbors[(int) direction].elevation);
+    public HexEdgeType GetEdgeType(HexCell otherCell) => HexMetrics.GetEdgeType(elevation, otherCell.elevation);
+    
+
 }
