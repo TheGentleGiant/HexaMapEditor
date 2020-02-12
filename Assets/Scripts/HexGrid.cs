@@ -101,12 +101,12 @@ public class HexGrid : MonoBehaviour
                 }
             }
         }
-        Text label = Instantiate<Text>(cellTextPrefab);
-        label.rectTransform.SetParent(gridCanvas.transform, false);
-        label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
-        label.text = x + "\n" + z;
-        label.text = cell.coords.ToStringOnSeparateLines();
-        cell.uiLabelTransform = label.rectTransform;
+        //Text label = Instantiate<Text>(cellTextPrefab);
+        //label.rectTransform.SetParent(gridCanvas.transform, false);
+        //label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
+        //label.text = x + "\n" + z;
+        //label.text = cell.coords.ToStringOnSeparateLines();
+        //cell.uiLabelTransform = label.rectTransform;
     }
 }
 

@@ -11,7 +11,7 @@ public class HexCell : MonoBehaviour
     [SerializeField] private HexCell[] neighbors;
     private int elevation;
     /*UI*/
-    public RectTransform uiLabelTransform;
+    //public RectTransform uiLabelTransform;
     
     public int Elevation
     {
@@ -24,9 +24,9 @@ public class HexCell : MonoBehaviour
             transform.localPosition = position;
             
             /*UI UPDATE*/
-            Vector3 uiPosition = uiLabelTransform.localPosition;
-            uiPosition.z = elevation * -HexMetrics.elevationStep;
-            uiLabelTransform.localPosition = uiPosition;
+            //Vector3 uiPosition = uiLabelTransform.localPosition;
+            //uiPosition.z = elevation * -HexMetrics.elevationStep;
+            //uiLabelTransform.localPosition = uiPosition;
         }
     }
 
